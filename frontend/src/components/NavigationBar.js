@@ -4,14 +4,10 @@ import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 import '../Navbar.css';
 
 
-const NavigationBar = ({ currentUser,logout }) => {
-
-
-  
-
-
+const NavigationBar = ({ currentUser,logout}) => {
 
   return (
+    <>
     <Navbar bg="dark" variant="dark" expand="lg" className="navbar-custom">
       <Container>
         <Navbar.Brand href="/" className="navbar-logo">
@@ -50,6 +46,7 @@ const NavigationBar = ({ currentUser,logout }) => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </>
   );
 };
 

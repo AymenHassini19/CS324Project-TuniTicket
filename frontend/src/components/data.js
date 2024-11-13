@@ -81,8 +81,8 @@ const initialProducts = [
 
 
 const users = [
-  { id: 1, username: "user1", password: "pass1", isAdmin: false },
-  { id: 2, username: "admin1", password: "adminpass", isAdmin: true },
+  { id: 1, username: "Ahmed", password: "Ahmed", isAdmin: false },
+  { id: 2, username: "Walid", password: "Walid", isAdmin: true },
   
 ];
 

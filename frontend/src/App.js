@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./screens/Home";
 import LoginScreen from "./screens/LoginScreen";
 import {users} from "./components/data"
+import Category from "./screens/Category";
 
 
 function App() {
@@ -48,24 +49,8 @@ function App() {
 <Route path="/" element={<Home products={products} />} />
 <Route path="/login" element={<LoginScreen onLogin={handleLogin}/>} />
 <Route path="/Categories" element={<Categories/>} />
-<Route path="/ProductDetails/:id"/>
+<Route path="/category/:cat" element={<Category products={products}/>} />
 </Routes>
-
-<div>
-      {!currentUser ? (
-        <h1>no one is loged in</h1>
-      ) : (
-        <div>
-          <h1>Welcome, {currentUser.username}</h1>
-          {currentUser.isAdmin ? (
-            <p>You are logged in as an Admin.</p>
-          ) : (
-            <p>You are logged in as a Normal User.</p>
-          )}
-        </div>
-      )}
-    </div>
-
 </BrowserRouter>
 
 
