@@ -1,17 +1,10 @@
 import React from 'react'
-import Product from '../components/Product'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from 'react-bootstrap';
-import Slider from '../components/Slider';
+import Product from '../components/Product';
 
-function Home({products}) { 
-    
-    return (
-
-<>
-
-    
-    <Slider products={products} />
+const Products = ({products}) => {
+  return (
+    <>
     <h2 style={{
         color: '#fff',
         textDecoration: 'none',
@@ -24,15 +17,16 @@ function Home({products}) {
         margin: '40px auto 30px',
         width: 'fit-content',
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-    }}>More Events</h2>
-                <Row>
-                  {products.slice(0, 4).map((product) => (
+    }}>All Events</h2>
+    <Row>
+                  {products.map((product) => (
                     <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                       <Product product={product} />
                     </Col>
                   ))}
                 </Row>
-</>
-)
+    </>
+  )
 }
-export default Home
+
+export default Products

@@ -8,6 +8,7 @@ import Home from "./screens/Home";
 import LoginScreen from "./screens/LoginScreen";
 import {users} from "./components/data"
 import Category from "./screens/Category";
+import Products from "./screens/Products";
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
 <Route path="/login" element={<LoginScreen onLogin={handleLogin}/>} />
 <Route path="/Categories" element={<Categories/>} />
 <Route path="/category/:cat" element={<Category products={products}/>} />
+<Route path="/events" element={<Products products={products}/>} />
 </Routes>
 </BrowserRouter>
 
