@@ -18,7 +18,7 @@ const NavigationBar = ({ currentUser,logout}) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link href="/Categories" className="nav-link">Categories</Nav.Link>
-            <Nav.Link href="/products" className="nav-link">Products</Nav.Link>
+            <Nav.Link href="/products" className="nav-link">Events</Nav.Link>
             <Nav.Link href="#customers" className="nav-link">Cart</Nav.Link>
 
             {currentUser ? (
