@@ -1,6 +1,6 @@
 const express=require("express")
 const app=express()
-const userRoute=require("./Routes/userRoute")
+const userRoute=require("./routes/userRoute")
 const dotenv=require("dotenv")
 dotenv.config()
 

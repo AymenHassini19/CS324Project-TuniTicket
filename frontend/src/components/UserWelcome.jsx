@@ -1,5 +1,5 @@
 import React from 'react'
-import '../UserWelcome.css'
+import './style/UserWelcome.css'
 
 const UserWelcome = ({currentUser}) => {
   return (

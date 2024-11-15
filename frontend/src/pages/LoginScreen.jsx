@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-import FormContainer from '../components/FormContainer';
+import FormContainer from '../components/FormContainer.jsx';
 
 const LoginScreen = ({ onLogin }) => {
   const [username, setUsername] = useState('');

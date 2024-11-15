@@ -1,7 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
-import '../Navbar.css';
+import logo from '../../assets/logo.png';
+import '../style/Navbar.css';
 
 
 const NavigationBar = ({ currentUser,logout}) => {
@@ -11,7 +12,7 @@ const NavigationBar = ({ currentUser,logout}) => {
     <Navbar bg="dark" variant="dark" expand="lg" className="navbar-custom">
       <Container>
         <Navbar.Brand href="/" className="navbar-logo">
-          <img src="/logo.png" alt="Logo" className="logo" />
+          <img src={logo} alt="Logo" className="logo" />
           TuniTicket
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

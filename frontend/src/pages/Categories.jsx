@@ -3,7 +3,7 @@ import { faMusic, faFutbol, faFilm, faFaceLaughBeam, faMasksTheater, faCubes } f
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import '../Categories.css'; 
+import '../components/style/Categories.css';
 
 const Categories = () => {
   const categories = [

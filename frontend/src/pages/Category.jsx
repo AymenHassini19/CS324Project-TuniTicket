@@ -1,8 +1,8 @@
 import React from 'react';
-import Product from '../components/Product';
+import Product from '../components/Product.jsx';
 import { useParams } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
-import '../Category.css'; // Make sure this CSS file is created for custom styles
+import '../components/style/Category.css'; // Make sure this CSS file is created for custom styles
 
 const Category = ({ products }) => {
   const { cat } = useParams();

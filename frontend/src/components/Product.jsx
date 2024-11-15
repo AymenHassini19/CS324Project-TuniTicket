@@ -1,7 +1,7 @@
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Rating from './Rating.js';
-import '../Product.css';
+import Rating from './ui/Rating.jsx';
+import './style/Product.css';
 
 const Product = ({ product }) => {
   const imageStyle = {
