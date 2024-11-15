@@ -7,7 +7,7 @@ dotenv.config()
 app.use(express.json())
 app.use("",userRoute)
 
-const port=process.env.PORT
+const port=process.env.SERVER_PORT
 app.listen(port,(error)=> {
     if (error){
         console.log("there is a problem")
