@@ -9,6 +9,7 @@ import LoginScreen from "./pages/LoginScreen.jsx";
 import {users} from "./components/data.js"
 import Category from "./pages/Category.jsx";
 import Products from "./pages/Products.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
                     <Route path="/Categories" element={<Categories/>} />
                     <Route path="/category/:cat" element={<Category products={products}/>} />
                     <Route path="/events" element={<Products products={products}/>} />
+                    <Route path="/event/:id" element={<ProductPage products={products}/>} />
                 </Routes>
             </BrowserRouter>
 
