@@ -1,6 +1,6 @@
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Rating from './ui/Rating.jsx';
+import Rating from './ui/rating.jsx';
 import './style/Product.css';
 
 const Product = ({ product }) => {
