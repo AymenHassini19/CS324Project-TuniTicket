@@ -1,0 +1,102 @@
+/* Navbar Styles */
+.custom-navbar {
+    background: linear-gradient(to right, #4b5563, #1f2937);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Brand (TuniTicket) Styles */
+.navbar-brand {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: #ffffff; /* Stay white on hover or focus */
+    text-decoration: none;
+}
+
+/* Logo Styles */
+.navbar-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0.5rem;
+}
+
+/* Nav Link Styles */
+.nav-link {
+    color: #d1d5db;
+    margin-right: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: #9ca3af; /* Slightly lighter gray */
+    text-decoration: none;
+}
+
+/* Dropdown Title (Admin/Username) Styles */
+.nav-dropdown {
+    color: #d1d5db;
+}
+
+.nav-dropdown .dropdown-toggle {
+    color: #d1d5db;
+    text-decoration: none;
+    background-color: transparent; /* Prevent background color change */
+}
+
+.nav-dropdown .dropdown-toggle:hover,
+.nav-dropdown .dropdown-toggle:focus {
+    color: #d1d5db; /* Keep the same color on hover or focus */
+    background-color: transparent; /* Prevent hover background */
+    box-shadow: none; /* Prevent focus outline */
+}
+
+/* Dropdown Menu Items */
+.nav-dropdown .dropdown-menu {
+    background-color: #1f2937; /* Dark background for dropdown */
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown .dropdown-item {
+    color: #d1d5db;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav-dropdown .dropdown-item:hover,
+.nav-dropdown .dropdown-item:focus {
+    color: #ffffff; /* White on hover or focus */
+    background-color: #4b5563; /* Slightly lighter background */
+}
+
+/* Login Button Styles */
+.login-button {
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: #ffffff;
+    color: #1f2937;
+}
+
+/* Disable outline focus on links and buttons for a clean look */
+.nav-link:focus,
+.nav-dropdown .dropdown-toggle:focus,
+.login-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+

@@ -67,7 +67,7 @@ const initialProducts = [
     {
         id: 5,
         name: 'JET XPO Exhibition Fair of Enterprises',
-        image: 'assets/products/jet.jpg',
+        image: '/assets/products/jet.jpg',
         description:
             'Join us for an exciting showcase of innovative businesses and startups. Network with entrepreneurs, discover new products, and connect with industry leaders. Don’t miss your chance to be part of this vibrant event!',
         brand: 'JET',

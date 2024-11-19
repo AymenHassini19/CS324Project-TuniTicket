@@ -7,7 +7,7 @@ const Product = ({product}) => {
             className="my-3 p-3 rounded-lg bg-white shadow-md transition-transform duration-200 hover:transform hover:translate-y-[-5px] hover:shadow-lg">
             <Link to={`/event/${product.id}`}>
                 <img
-                    src={product.image}
+                    src={`/`+product.image}
                     alt={product.name}
                     className="w-full h-48 object-cover rounded-t-lg transition-opacity duration-300 hover:opacity-90"
                 />

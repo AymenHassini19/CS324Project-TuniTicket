@@ -2,7 +2,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
 const Rating = ({ value, text, color }) => {
   return (
-    <div className='rating'>
+    <div className='rating inline-flex items-center space-x-1'>
       <span>
         {value >= 1 ? (
           <FaStar style={{ color }} />
@@ -48,7 +48,7 @@ const Rating = ({ value, text, color }) => {
           <FaRegStar style={{ color }} />
         )}
       </span>
-      <span className='rating-text'>{text && text}</span>
+      <span className='rating-text ml-2'>{text && text}</span>
     </div>
   );
 };
@@ -58,3 +58,4 @@ Rating.defaultProps = {
 };
 
 export default Rating;
+
