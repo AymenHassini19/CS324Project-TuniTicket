@@ -34,7 +34,7 @@ const ProductPage = ({products}) => {
                             Location: {product.location}
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            Date: {product.date}
+                            Date: {product.date.toLocaleDateString("en-GB")}
                         </ListGroup.Item>
                     </ListGroup>
 
