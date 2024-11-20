@@ -5,9 +5,9 @@ const initialProducts = [
         image: 'assets/products/davidvendetta.jpg',
         description:
             'Join us for an electrifying night as David Vendetta takes the stage! Experience his dynamic beats and chart-topping hits in an unforgettable concert. Get your tickets now for a night of non-stop dancing and incredible music!',
-        brand: 'David Vendetta',
         location: 'Tunis',
         date: new Date(2024, 11, 20),
+        category: 'Music',
         price: 85,
         countInStock: 10,
         rating: 4.5,
