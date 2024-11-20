@@ -4,9 +4,9 @@ import {Row, Col, Image, ListGroup, Card, Button, Form} from 'react-bootstrap'
 
 const ProductPage = ({products}) => {
     const [qty, setQty] = useState(1)
-    const {id} = useParams()
+    const {_id} = useParams()
 
-    const product = products.find((p) => p.id == id)
+    const product = products.find((p) => p._id == _id)
     console.log(product.image)
     const addToCartHandler = () => {
         // Cart functionality to be implemented

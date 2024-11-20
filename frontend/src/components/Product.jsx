@@ -5,7 +5,7 @@ const Product = ({product}) => {
     return (
         <div
             className="my-3 p-3 rounded-lg bg-white shadow-md transition-transform duration-200 hover:transform hover:translate-y-[-5px] hover:shadow-lg">
-            <Link to={`/event/${product.id}`}>
+            <Link to={`/event/${product._id}`}>
                 <img
                     src={`/`+product.image}
                     alt={product.name}
@@ -14,7 +14,7 @@ const Product = ({product}) => {
             </Link>
 
             <div className="p-4">
-                <Link to={`/event/${product.id}`}
+                <Link to={`/event/${product._id}`}
                       className="no-underline text-gray-800 transition-colors duration-300 hover:text-red-500">
                     <h3 className="text-lg font-bold mt-2">{product.name}</h3>
                 </Link>

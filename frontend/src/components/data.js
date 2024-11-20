@@ -1,6 +1,6 @@
 const initialProducts = [
     {
-        id: 0,
+        _id: 0,
         name: 'David Vendetta Concert',
         image: 'assets/products/davidvendetta.jpg',
         description:
@@ -13,7 +13,7 @@ const initialProducts = [
         numReviews: 12,
     },
     {
-        id: 1,
+        _id: 1,
         name: 'Tunisia Drift Championship',
         image: 'assets/products/drift.jpg',
         description:
@@ -26,7 +26,7 @@ const initialProducts = [
         numReviews: 8,
     },
     {
-        id: 2,
+        _id: 2,
         name: 'Venom: The Last Dance',
         image: 'assets/products/venom.jpg',
         description:
@@ -39,7 +39,7 @@ const initialProducts = [
         numReviews: 12,
     },
     {
-        id: 3,
+        _id: 3,
         name: 'Lellahom show',
         image: 'assets/products/lellahom.jpg',
         description:
@@ -52,7 +52,7 @@ const initialProducts = [
         numReviews: 12,
     },
     {
-        id: 4,
+        _id: 4,
         name: 'National Festival of Tunisian Theatre',
         image: 'assets/products/festival.jpg',
         description:
@@ -65,9 +65,9 @@ const initialProducts = [
         numReviews: 10,
     },
     {
-        id: 5,
+        _id: 5,
         name: 'JET XPO Exhibition Fair of Enterprises',
-        image: '/assets/products/jet.jpg',
+        image: 'assets/products/jet.jpg',
         description:
             'Join us for an exciting showcase of innovative businesses and startups. Network with entrepreneurs, discover new products, and connect with industry leaders. Don’t miss your chance to be part of this vibrant event!',
         brand: 'JET',
@@ -81,8 +81,8 @@ const initialProducts = [
 
 
 const users = [
-    {id: 1, username: "Ahmed", password: "Ahmed", isAdmin: false},
-    {id: 2, username: "Walid", password: "Walid", isAdmin: true},
+    {_id: 1, username: "Ahmed", password: "Ahmed", isAdmin: false},
+    {_id: 2, username: "Walid", password: "Walid", isAdmin: true},
 
 ];
 

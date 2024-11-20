@@ -53,7 +53,7 @@ function App() {
                     <Route path="/Categories" element={<Categories/>} />
                     <Route path="/category/:cat" element={<Category products={products}/>} />
                     <Route path="/events" element={<Products products={products}/>} />
-                    <Route path="/event/:id" element={<ProductPage products={products}/>} />
+                    <Route path="/event/:_id" element={<ProductPage products={products}/>} />
                 </Routes>
             </BrowserRouter>
 

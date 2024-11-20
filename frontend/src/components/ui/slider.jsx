@@ -8,7 +8,7 @@ const Slider = ({ products }) => {
   return (
     <Carousel interval={3000}>
       {latestProducts.map((product) => (
-        <Carousel.Item key={product.id}>
+        <Carousel.Item key={product._id}>
           <Link to={`/ProductDetails/${product.id}`}>
             <img
               className="d-block w-100"
