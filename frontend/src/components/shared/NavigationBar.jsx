@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 import logo from '../../../public/assets/logo.png';
 import '../../styles/NavigationBar.css';
+import SearchBox from '../SearchBox';
 
 const NavigationBar = ({ currentUser, logout }) => {
     return (
@@ -11,9 +12,11 @@ const NavigationBar = ({ currentUser, logout }) => {
                     <img src={logo} alt="Logo" className="navbar-logo" />
                     TuniTicket
                 </Navbar.Brand>
+                <SearchBox />
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
+                        
                         <Nav.Link href="/Categories" className="nav-link">Categories</Nav.Link>
                         <Nav.Link href="/events" className="nav-link">Events</Nav.Link>
                         <Nav.Link href="#customers" className="nav-link">Cart</Nav.Link>

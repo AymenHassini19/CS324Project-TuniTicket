@@ -10,6 +10,7 @@ import {users} from "./components/data.js"
 import Category from "./pages/Category.jsx";
 import Products from "./pages/Products.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
                     <Route path="/category/:cat" element={<Category products={products}/>} />
                     <Route path="/events" element={<Products products={products}/>} />
                     <Route path="/event/:_id" element={<ProductPage products={products}/>} />
+                    <Route path="/search" element={<SearchPage products={products} />} />
                 </Routes>
             </BrowserRouter>
 
