@@ -26,7 +26,7 @@ const LoginScreen = () => {
             const token = response.data.token; 
             localStorage.setItem("token", token);
             if(response.data.user.role==='user'){ 
-                navigate('/profile');} 
+                navigate('/');} 
             else{navigate('/customers')} } ) 
           .catch((error) => { 
             console.error("There was an error!", error); }); };

@@ -36,7 +36,7 @@ function App() {
         <div  style={{backgroundImage:'url("https://img.freepik.com/photos-gratuite/fond-papier-peint_53876-25248.jpg?t=st=1731336912~exp=1731340512~hmac=19e2ee931accf30232dfece6a46fd6e308579816a0e33f60570c8eaf4da637eb&w=740")', backgroundSize:"cover", minHeight:"100vh"}}>
 
             <BrowserRouter>
-                <NavigationBar currentUser={currentUser} logout={handleLogout}/>
+                <NavigationBar currentUser={currentUser}/>
                 <Routes>
                     <Route path="/" element={<Home products={products} />} />
                     <Route path="/login" element={<LoginScreen/>} />
