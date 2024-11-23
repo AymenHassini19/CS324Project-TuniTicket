@@ -11,20 +11,12 @@ import Category from "./pages/Category.jsx";
 import Products from "./pages/Products.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
+import Customers from "./pages/Customers.jsx";
+import Profile from "./pages/Profile.jsx";
 
 
 function App() {
-
-    const [currentUser, setCurrentUser] = useState(
-        JSON.parse(localStorage.getItem("currentUser")) || null
-    );
-
-    
-
-    const handleLogout = () => {
-        setCurrentUser(null);
-        localStorage.removeItem("currentUser");
-    };
 
 
     const [products, setProduct] = useState(initialProducts);
@@ -36,7 +28,7 @@ function App() {
         <div  style={{backgroundImage:'url("https://img.freepik.com/photos-gratuite/fond-papier-peint_53876-25248.jpg?t=st=1731336912~exp=1731340512~hmac=19e2ee931accf30232dfece6a46fd6e308579816a0e33f60570c8eaf4da637eb&w=740")', backgroundSize:"cover", minHeight:"100vh"}}>
 
             <BrowserRouter>
-                <NavigationBar currentUser={currentUser}/>
+                <NavigationBar/>
                 <Routes>
                     <Route path="/" element={<Home products={products} />} />
                     <Route path="/login" element={<LoginScreen/>} />
@@ -45,6 +37,22 @@ function App() {
                     <Route path="/events" element={<Products products={products}/>} />
                     <Route path="/event/:_id" element={<ProductPage products={products}/>} />
                     <Route path="/search" element={<SearchPage products={products} />} />
+                    <Route 
+                    path="/customers" 
+                    element={
+                        <PrivateRoute allowedRoles={['admin']}>
+                        <Customers />
+                        </PrivateRoute>
+                    } 
+                    />
+                    <Route 
+                    path="/profile" 
+                    element={
+                        <PrivateRoute allowedRoles={['user','admin']}>
+                        <Profile />
+                        </PrivateRoute>
+                    } 
+                    />
                 </Routes>
             </BrowserRouter>
 
