@@ -19,18 +19,7 @@ function App() {
         JSON.parse(localStorage.getItem("currentUser")) || null
     );
 
-    const handleLogin = (username, password) => {
-        const user = users.find(
-            (user) => user.username === username && user.password === password
-        );
-
-        if (user) {
-            setCurrentUser(user);
-            localStorage.setItem("currentUser", JSON.stringify(user));
-        } else {
-            alert("Invalid credentials");
-        }
-    };
+    
 
     const handleLogout = () => {
         setCurrentUser(null);
@@ -50,7 +39,7 @@ function App() {
                 <NavigationBar currentUser={currentUser} logout={handleLogout}/>
                 <Routes>
                     <Route path="/" element={<Home products={products} />} />
-                    <Route path="/login" element={<LoginScreen onLogin={handleLogin}/>} />
+                    <Route path="/login" element={<LoginScreen/>} />
                     <Route path="/Categories" element={<Categories/>} />
                     <Route path="/category/:cat" element={<Category products={products}/>} />
                     <Route path="/events" element={<Products products={products}/>} />

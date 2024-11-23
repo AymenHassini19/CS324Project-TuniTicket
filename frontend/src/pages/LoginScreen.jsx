@@ -1,62 +1,80 @@
-import { useState } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
-import FormContainer from '../components/FormContainer.jsx';
+import React, { useState } from "react";
+import {
+  MDBContainer,
+  MDBInput,
+  MDBCheckbox,
+  MDBBtn,
+  MDBIcon
+}
+from 'mdb-react-ui-kit';
+import { Link } from "react-router-dom"; // Import Link from react-router-dom 
+import axios from "axios"; 
+import { useNavigate } from "react-router-dom";
 
-const LoginScreen = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const LoginScreen = () => {
 
-  const { search } = useLocation();
-  const redirect = new URLSearchParams(search).get('redirect') || '/';
+  const url = "http://localhost:8000/api/signIn"; 
+  const navigate=useNavigate() 
+  const [user, setUser] = useState({ email: "", password: "" }); 
+  const handleChange = (e) => { setUser({ ...user, [e.target.id]: e.target.value }); };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    onLogin(username, password);
-  };
+  const handleSubmit = (e) => { 
+    e.preventDefault(); 
+    axios .post(url, user) 
+          .then((response) => { 
+            console.log(response.data); 
+            const token = response.data.token; 
+            localStorage.setItem("token", token);
+            if(response.data.user.role==='user'){ 
+                navigate('/profile');} 
+            else{navigate('/customers')} } ) 
+          .catch((error) => { 
+            console.error("There was an error!", error); }); };
+
 
   return (
-    <FormContainer>
-      <h1>Sign In</h1>
+    
+    <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
 
-      <Form onSubmit={handleLogin}>
-        <Form.Group className="my-2" controlId="username">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Group>
+      <MDBInput wrapperClass='mb-4' onChange={handleChange} label='Email address' id='email' type='email'/>
+      <MDBInput wrapperClass='mb-4' onChange={handleChange} label='Password' id='password' type='password'/>
 
-        <Form.Group className="my-2" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
+      <div className="d-flex justify-content-between mx-3 mb-4">
+        <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
+        <a href="!#">Forgot password?</a>
+      </div>
 
-        <Button type="submit" variant="primary">
-          Sign In
-        </Button>
-      </Form>
+      <MDBBtn className="mb-4" onClick={handleSubmit}>Sign in</MDBBtn>
 
-      <Row className="py-3">
-        <Col>
-          New Customer?{' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
-            Register
-          </Link>
-        </Col>
-      </Row>
-    </FormContainer>
-  );
-};
+      <div className="text-center">
+        <p>Not a member? <a href="#!">Register</a></p>
+        <p>or sign up with:</p>
 
-export default LoginScreen;
+        <div className='d-flex justify-content-between mx-auto' style={{width: '40%'}}>
+          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+            <MDBIcon fab icon='facebook-f' size="sm"/>
+          </MDBBtn>
+
+          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+            <MDBIcon fab icon='twitter' size="sm"/>
+          </MDBBtn>
+
+          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+            <MDBIcon fab icon='google' size="sm"/>
+          </MDBBtn>
+
+          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+            <MDBIcon fab icon='github' size="sm"/>
+          </MDBBtn>
+
+        </div>
+      </div>
+
+    </MDBContainer>
+
+  )
+}
+
+export default LoginScreen
 
   
