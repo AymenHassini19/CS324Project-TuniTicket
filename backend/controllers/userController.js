@@ -10,7 +10,7 @@ const signIn = async (req, res) => {
         const foundUser = await User.findOne({ email: user.email }); 
         if (foundUser) { 
             if (user.password === foundUser.password) { 
-                const token = jwt.sign( { id: foundUser._id, role: foundUser.role }, process.env.JWT_SECRET ); 
+                const token = jwt.sign( { id: foundUser._id, role: foundUser.role, username: foundUser.username }, process.env.JWT_SECRET ); 
                 res.status(200).json({ user: foundUser, token: token }); } 
             else {
                 res.status(400).json({ msg: "Wrong password" }); } } 
