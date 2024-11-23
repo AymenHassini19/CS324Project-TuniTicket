@@ -28,7 +28,7 @@ const NavigationBar = ({ currentUser, logout }) => {
                                     <NavDropdown.Item href="/" onClick={logout}>Logout</NavDropdown.Item>
                                 </NavDropdown>
 
-                                {currentUser.isAdmin && (
+                                {currentUser.role === "admin" && (
                                     <NavDropdown title="Admin" id="admin-dropdown" className="nav-dropdown">
                                         <NavDropdown.Item href="/admin/events">Events</NavDropdown.Item>
                                         <NavDropdown.Item href="/admin/orders">Orders</NavDropdown.Item>

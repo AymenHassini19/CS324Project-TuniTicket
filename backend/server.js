@@ -1,13 +1,20 @@
 const express=require("express")
 const app=express()
-const userRoute=require("./routes/userRoute")
+const userRoute=require("./Routes/userRoute")
 const dotenv=require("dotenv")
+const connectDb = require("./config/connectDb")
+const cors = require("cors")
+//const populate = require("./seeder")
 dotenv.config()
+app.use(cors())
+
 
 app.use(express.json())
-app.use("",userRoute)
+app.use("/api",userRoute)
 
-const port=process.env.SERVER_PORT
+connectDb()
+//populate()
+const port=process.env.PORT
 app.listen(port,(error)=> {
     if (error){
         console.log("there is a problem")
@@ -15,4 +22,3 @@ app.listen(port,(error)=> {
         console.log(`server is running on ${port}`)
     }
 })
-
