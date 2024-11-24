@@ -14,6 +14,7 @@ import SearchPage from "./pages/SearchPage.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import Customers from "./pages/Customers.jsx";
 import Profile from "./pages/Profile.jsx";
+import SignupScreen from "./pages/SignupScreen.jsx";
 
 
 function App() {
@@ -32,13 +33,14 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home products={products} />} />
                     <Route path="/login" element={<LoginScreen/>} />
+                    <Route path="/signup" element={<SignupScreen/>} />
                     <Route path="/Categories" element={<Categories/>} />
                     <Route path="/category/:cat" element={<Category products={products}/>} />
                     <Route path="/events" element={<Products products={products}/>} />
                     <Route path="/event/:_id" element={<ProductPage products={products}/>} />
                     <Route path="/search" element={<SearchPage products={products} />} />
                     <Route 
-                    path="/customers" 
+                    path="/admin/customers" 
                     element={
                         <PrivateRoute allowedRoles={['admin']}>
                         <Customers />

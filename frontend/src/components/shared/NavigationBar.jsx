@@ -46,7 +46,7 @@ const NavigationBar = () => {
                                     <NavDropdown title="Admin" id="admin-dropdown" className="nav-dropdown">
                                         <NavDropdown.Item href="/admin/events">Events</NavDropdown.Item>
                                         <NavDropdown.Item href="/admin/orders">Orders</NavDropdown.Item>
-                                        <NavDropdown.Item href="/admin/users">Users</NavDropdown.Item>
+                                        <NavDropdown.Item href="/admin/customers">Customers</NavDropdown.Item>
                                     </NavDropdown>
                                 )}
                             </>

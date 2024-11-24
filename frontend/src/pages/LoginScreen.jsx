@@ -1,80 +1,105 @@
 import React, { useState } from "react";
-import {
-  MDBContainer,
-  MDBInput,
-  MDBCheckbox,
-  MDBBtn,
-  MDBIcon
-}
-from 'mdb-react-ui-kit';
-import { Link } from "react-router-dom"; // Import Link from react-router-dom 
-import axios from "axios"; 
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "../styles/LoginScreen.css";
 
 const LoginScreen = () => {
+  const url = "http://localhost:8000/api/signIn";
+  const navigate = useNavigate();
+  const [user, setUser] = useState({ email: "", password: "" });
 
-  const url = "http://localhost:8000/api/signIn"; 
-  const navigate=useNavigate() 
-  const [user, setUser] = useState({ email: "", password: "" }); 
-  const handleChange = (e) => { setUser({ ...user, [e.target.id]: e.target.value }); };
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.id]: e.target.value });
+  };
 
-  const handleSubmit = (e) => { 
-    e.preventDefault(); 
-    axios .post(url, user) 
-          .then((response) => { 
-            console.log(response.data); 
-            const token = response.data.token; 
-            localStorage.setItem("token", token);
-            if(response.data.user.role==='user'){ 
-                navigate('/');} 
-            else{navigate('/customers')} } ) 
-          .catch((error) => { 
-            console.error("There was an error!", error); }); };
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(url, user)
+      .then((response) => {
+        console.log(response.data);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        if (response.data.user.role === "user") {
+          navigate("/");
+        } else {
+          navigate("/admin/customers");
+        }
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  };
 
   return (
-    
-    <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+    <div className="login-container">
+      <div className="login-form">
+        <h1 className="login-heading">Log In</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="input-field">
+            <label htmlFor="email">Email address</label>
+            <input
+              type="email"
+              id="email"
+              value={user.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
 
-      <MDBInput wrapperClass='mb-4' onChange={handleChange} label='Email address' id='email' type='email'/>
-      <MDBInput wrapperClass='mb-4' onChange={handleChange} label='Password' id='password' type='password'/>
+          <div className="input-field">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={user.password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              required
+            />
+          </div>
 
-      <div className="d-flex justify-content-between mx-3 mb-4">
-        <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-        <a href="!#">Forgot password?</a>
-      </div>
+          <div className="remember-forgot">
+            <div className="remember-me">
+              <input type="checkbox" id="remember" />
+              <label htmlFor="remember">Remember me</label>
+            </div>
+            <a href="/#">Forgot password?</a>
+          </div>
 
-      <MDBBtn className="mb-4" onClick={handleSubmit}>Sign in</MDBBtn>
+          <button type="submit" className="submit-btn">
+            Log In
+          </button>
+        </form>
 
-      <div className="text-center">
-        <p>Not a member? <a href="#!">Register</a></p>
-        <p>or sign up with:</p>
+        <div className="signup-link">
+          <p>
+            Not a member? <a href="/signup">Register</a>
+          </p>
+          <p>or sign up with:</p>
 
-        <div className='d-flex justify-content-between mx-auto' style={{width: '40%'}}>
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='facebook-f' size="sm"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='twitter' size="sm"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='google' size="sm"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='github' size="sm"/>
-          </MDBBtn>
-
+          <div className="social-btns">
+            <button className="social-btn facebook">
+              <i className="fab fa-facebook-f"></i>
+            </button>
+            <button className="social-btn twitter">
+              <i className="fab fa-twitter"></i>
+            </button>
+            <button className="social-btn google">
+              <i className="fab fa-google"></i>
+            </button>
+            <button className="social-btn github">
+              <i className="fab fa-github"></i>
+            </button>
+          </div>
         </div>
       </div>
+    </div>
+  );
+};
 
-    </MDBContainer>
+export default LoginScreen;
 
-  )
-}
-
-export default LoginScreen
 
   
