@@ -1,12 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { initialProducts } from "./components/data.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Categories from "./pages/Categories.jsx";
 import NavigationBar from "./components/shared/NavigationBar.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import LoginScreen from "./pages/LoginScreen.jsx";
-import {users} from "./components/data.js"
 import Category from "./pages/Category.jsx";
 import Products from "./pages/Products.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
@@ -15,54 +13,86 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 import Customers from "./pages/Customers.jsx";
 import Profile from "./pages/Profile.jsx";
 import SignupScreen from "./pages/SignupScreen.jsx";
-
+import axios from "axios";
 
 function App() {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-
-    const [products, setProduct] = useState(initialProducts);
-
-
-
+    // Fetch products from the backend
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/api/products");
+                setProducts(response.data.products); // Assuming the API returns { products: [...] }
+                setLoading(false);
+            } catch (err) {
+                console.error(err);
+                setError("Failed to load products.");
+                setLoading(false);
+            }
+        };
+        fetchProducts();
+    }, []);
 
     return (
-        <div  style={{backgroundImage:'url("https://img.freepik.com/photos-gratuite/fond-papier-peint_53876-25248.jpg?t=st=1731336912~exp=1731340512~hmac=19e2ee931accf30232dfece6a46fd6e308579816a0e33f60570c8eaf4da637eb&w=740")', backgroundSize:"cover", minHeight:"100vh"}}>
-
+        <div
+            style={{
+                backgroundImage:
+                    'url("https://img.freepik.com/photos-gratuite/fond-papier-peint_53876-25248.jpg?t=st=1731336912~exp=1731340512~hmac=19e2ee931accf30232dfece6a46fd6e308579816a0e33f60570c8eaf4da637eb&w=740")',
+                backgroundSize: "cover",
+                minHeight: "100vh",
+            }}
+        >
             <BrowserRouter>
-                <NavigationBar/>
+                <NavigationBar />
                 <Routes>
-                    <Route path="/" element={<Home products={products} />} />
-                    <Route path="/login" element={<LoginScreen/>} />
-                    <Route path="/signup" element={<SignupScreen/>} />
-                    <Route path="/Categories" element={<Categories/>} />
-                    <Route path="/category/:cat" element={<Category products={products}/>} />
-                    <Route path="/events" element={<Products products={products}/>} />
-                    <Route path="/event/:_id" element={<ProductPage products={products}/>} />
-                    <Route path="/search" element={<SearchPage products={products} />} />
-                    <Route 
-                    path="/admin/customers" 
-                    element={
-                        <PrivateRoute allowedRoles={['admin']}>
-                        <Customers />
-                        </PrivateRoute>
-                    } 
+                    <Route
+                        path="/"
+                        element={<Home products={products} loading={loading} error={error} />}
                     />
-                    <Route 
-                    path="/profile" 
-                    element={
-                        <PrivateRoute allowedRoles={['user','admin']}>
-                        <Profile />
-                        </PrivateRoute>
-                    } 
+                    <Route path="/login" element={<LoginScreen />} />
+                    <Route path="/signup" element={<SignupScreen />} />
+                    <Route path="/Categories" element={<Categories />} />
+                    <Route
+                        path="/category/:cat"
+                        element={<Category products={products} />}
+                    />
+                    <Route
+                        path="/events"
+                        element={<Products products={products} />}
+                    />
+                    <Route
+                        path="/event/:_id"
+                        element={<ProductPage products={products} />}
+                    />
+                    <Route
+                        path="/search"
+                        element={<SearchPage products={products} />}
+                    />
+                    <Route
+                        path="/admin/customers"
+                        element={
+                            <PrivateRoute allowedRoles={["admin"]}>
+                                <Customers />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <PrivateRoute allowedRoles={["user", "admin"]}>
+                                <Profile />
+                            </PrivateRoute>
+                        }
                     />
                 </Routes>
             </BrowserRouter>
-
-
-
         </div>
     );
 }
 
 export default App;
+
 
