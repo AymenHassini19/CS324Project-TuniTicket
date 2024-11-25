@@ -32,16 +32,41 @@ const getOneProduct = async (req, res) => {
 
 // Add a new product
 const postProduct = async (req, res) => {
-    const product = req.body;
     try {
-        const newProduct = new Product(product);
-        await newProduct.save();
-        res.status(200).json({ product: newProduct, msg: "Product successfully added" });
+        const {
+            name,
+            image,
+            description,
+            location,
+            date,
+            category,
+            price,
+            countInStock,
+        } = req.body;
+
+        if (!name || !image || !description || !location || !date || !category || !price || !countInStock) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        const newProduct = new Product({
+            name,
+            image,
+            description,
+            location,
+            date,
+            category,
+            price,
+            countInStock,
+        });
+
+        const savedProduct = await newProduct.save();
+        res.status(201).json({ product: savedProduct });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ msg: "Error adding the product" });
+        console.error("Error creating product:", error);
+        res.status(500).json({ message: "Server error" });
     }
 };
+
 
 // Update a product
 const putProduct = async (req, res) => {
