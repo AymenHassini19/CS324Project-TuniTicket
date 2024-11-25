@@ -14,6 +14,7 @@ import Customers from "./pages/Customers.jsx";
 import Profile from "./pages/Profile.jsx";
 import SignupScreen from "./pages/SignupScreen.jsx";
 import axios from "axios";
+import ProductsUpdate from "./pages/ProductsUpdate.jsx";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -55,27 +56,23 @@ function App() {
                     <Route path="/login" element={<LoginScreen />} />
                     <Route path="/signup" element={<SignupScreen />} />
                     <Route path="/Categories" element={<Categories />} />
-                    <Route
-                        path="/category/:cat"
-                        element={<Category products={products} />}
-                    />
-                    <Route
-                        path="/events"
-                        element={<Products products={products} />}
-                    />
-                    <Route
-                        path="/event/:_id"
-                        element={<ProductPage products={products} />}
-                    />
-                    <Route
-                        path="/search"
-                        element={<SearchPage products={products} />}
-                    />
+                    <Route path="/category/:cat" element={<Category products={products} />}/>
+                    <Route path="/events" element={<Products products={products} />} />
+                    <Route path="/event/:_id" element={<ProductPage products={products} />} />
+                    <Route path="/search" element={<SearchPage products={products} />} />
                     <Route
                         path="/admin/customers"
                         element={
                             <PrivateRoute allowedRoles={["admin"]}>
                                 <Customers />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/events"
+                        element={
+                            <PrivateRoute allowedRoles={["admin"]}>
+                                <ProductsUpdate products={products} setProducts={setProducts} />
                             </PrivateRoute>
                         }
                     />
