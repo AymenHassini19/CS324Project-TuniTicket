@@ -32,7 +32,7 @@ const Cart = ({ cart, products, setCart }) => {
   }, 0);
 
   if (cart.length === 0) {
-    return <h2>Your cart is empty</h2>;
+    return <h2 className="text-white no-underline rounded p-4 bg-gray-800 text-2xl font-bold text-center my-10 mx-auto w-fit shadow-md">Your cart is empty</h2>;
   }
 
   return (
