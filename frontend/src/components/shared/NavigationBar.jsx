@@ -16,6 +16,7 @@ const NavigationBar = () => {
         if (window.confirm("Are you sure you want to log out?")) {
             localStorage.removeItem("token"); // Remove token from localStorage
             navigate("/"); // Redirect to home page or login page
+            localStorage.removeItem("cart");
         }
     };
 

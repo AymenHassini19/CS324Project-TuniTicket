@@ -25,6 +25,7 @@ const LoginScreen = () => {
         } else {
           navigate("/admin/customers");
         }
+        localStorage.removeItem("cart");
       })
       .catch((error) => {
         console.error("There was an error!", error);

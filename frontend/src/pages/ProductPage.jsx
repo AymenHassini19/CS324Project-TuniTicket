@@ -4,11 +4,6 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from "react-bootstrap"
 
 const ProductPage = ({ products, addToCart }) => {
 
-    useEffect(() => {
-        // Clear the local storage when the component mounts
-        localStorage.clear();
-        console.log("Local storage has been cleared.");
-      }, []);
 
     const [qty, setQty] = useState(1);
     const { _id } = useParams();
