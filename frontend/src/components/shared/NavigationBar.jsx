@@ -32,7 +32,7 @@ const NavigationBar = () => {
                     <Nav className="ms-auto">
                         <Nav.Link href="/Categories" className="nav-link">Categories</Nav.Link>
                         <Nav.Link href="/events" className="nav-link">Events</Nav.Link>
-                        <Nav.Link href="#customers" className="nav-link">Cart</Nav.Link>
+                        <Nav.Link href="/cart" className="nav-link">Cart</Nav.Link>
 
                         {currentUser ? (
                             <>
