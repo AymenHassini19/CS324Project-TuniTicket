@@ -16,7 +16,7 @@ function Profile() {
     username: "",
     email: "",
     age: "",
-    password: "", // Added password state
+    password: "",
   });
 
   const handleClose = () => setShow(false);
@@ -61,8 +61,15 @@ function Profile() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      // Send updated data to the server, including the new password if provided
-      await axios.put(`${url}/${user._id}`, userUpdate);
+      // Filter out empty fields from userUpdate
+      const updatedFields = Object.fromEntries(
+        Object.entries(userUpdate).filter(([_, value]) => value !== "")
+      );
+      
+      // Only send the request if there are fields to update
+      if (Object.keys(updatedFields).length > 0) {
+        await axios.put(`${url}/${user._id}`, updatedFields);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -149,4 +156,3 @@ function Profile() {
 }
 
 export default Profile;
-
