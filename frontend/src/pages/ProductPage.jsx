@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
+import React, { useState , useEffect} from "react";
+import { useParams } from "react-router-dom";
+import { Row, Col, Image, ListGroup, Card, Button, Form } from "react-bootstrap";
 
-const ProductPage = ({ products }) => {
+const ProductPage = ({ products, addToCart }) => {
+
+    useEffect(() => {
+        // Clear the local storage when the component mounts
+        localStorage.clear();
+        console.log("Local storage has been cleared.");
+      }, []);
+
     const [qty, setQty] = useState(1);
     const { _id } = useParams();
 
@@ -13,7 +20,8 @@ const ProductPage = ({ products }) => {
     }
 
     const addToCartHandler = () => {
-        console.log(`Added ${qty} tickets to cart`);
+        addToCart(product._id, qty);
+        console.log(`Added ${qty} tickets of ${product.name} to the cart`);
     };
 
     return (
@@ -28,7 +36,7 @@ const ProductPage = ({ products }) => {
                             <h3>{product.name}</h3>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <h4>Price: ${product.price}</h4>
+                            <h4>Price: TDN {product.price}</h4>
                         </ListGroup.Item>
                         <ListGroup.Item>Description: {product.description}</ListGroup.Item>
                         <ListGroup.Item>Location: {product.location}</ListGroup.Item>
@@ -41,7 +49,7 @@ const ProductPage = ({ products }) => {
                                 <Row>
                                     <Col>Status:</Col>
                                     <Col>
-                                        {product.countInStock > 0 ? 'Available' : 'Sold Out'}
+                                        {product.countInStock > 0 ? "Available" : "Sold Out"}
                                     </Col>
                                 </Row>
                             </ListGroup.Item>

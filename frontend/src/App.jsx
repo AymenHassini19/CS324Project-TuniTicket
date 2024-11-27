@@ -21,6 +21,15 @@ function App() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [cart, setCart] = useState(() => {
+        const savedCart = localStorage.getItem("cart");
+        return savedCart ? JSON.parse(savedCart) : [];
+    });
+
+    // Persist cart in localStorage
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
     // Fetch products from the backend
     useEffect(() => {
@@ -37,6 +46,22 @@ function App() {
         };
         fetchProducts();
     }, []);
+
+    const addToCart = (_id, qte) => {
+        setCart((prevCart) => {
+            const existingProduct = prevCart.find((item) => item._id === _id);
+            if (existingProduct) {
+                return prevCart.map((item) =>
+                    item._id === _id
+                        ? { ...item, qte: Math.min(item.qte + qte, products.find((p) => p._id === _id).countInStock) }
+                        : item
+                );
+            } else {
+                return [...prevCart, { _id, qte }];
+            }
+        });
+        console.log(cart)
+    };
 
     return (
         <div
@@ -59,9 +84,9 @@ function App() {
                     <Route path="/Categories" element={<Categories />} />
                     <Route path="/category/:cat" element={<Category products={products} />}/>
                     <Route path="/events" element={<Products products={products} />} />
-                    <Route path="/event/:_id" element={<ProductPage products={products} />} />
+                    <Route path="/event/:_id" element={<ProductPage products={products} addToCart={addToCart} />} />
                     <Route path="/search" element={<SearchPage products={products} />} />
-                    <Route path="/cart" element={<Cart/>} />
+                    <Route path="/cart" element={<Cart setCart={setCart} cart={cart} products={products} />} />
                     <Route
                         path="/admin/customers"
                         element={
@@ -93,5 +118,3 @@ function App() {
 }
 
 export default App;
-
-
