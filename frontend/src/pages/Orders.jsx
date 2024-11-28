@@ -54,6 +54,11 @@ const Orders = () => {
     return product ? product.name : 'Unknown Product';
   };
 
+  const getTotalPriceById = (productId, qty) => {
+    const product = products.find((product) => product._id === productId);
+    return product ? product.price * qty : 0;
+  };
+
   const handleDeleteOrder = async (orderId) => {
     const token = localStorage.getItem('token');
     try {
@@ -78,6 +83,7 @@ const Orders = () => {
             <th>Event</th>
             <th>Quantity</th>
             <th>Purchase Date</th>
+            <th>Total</th>
             <th>Delete</th>
           </tr>
         </thead>
@@ -88,6 +94,7 @@ const Orders = () => {
               <td>{getProductNameById(order.productId)}</td>
               <td>{order.qty}</td>
               <td>{new Date(order.createdAt).toLocaleString()}</td>
+              <td>TDN {getTotalPriceById(order.productId, order.qty).toFixed(2)}</td>
               <td>
                 <FontAwesomeIcon
                   icon={faTrash}
