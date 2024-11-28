@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const userRoute = require("./Routes/userRoute");
 const productRoute = require("./Routes/productRoute");
+const orderRoute = require("./Routes/orderRoute");
 const dotenv = require("dotenv");
 const connectDb = require("./config/connectDb");
 const cors = require("cors");
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use("/api/upload", uploadRoute);
 app.use("/api", userRoute);
 app.use("/api", productRoute);
+app.use("/api", orderRoute);
 
 connectDb();
 //seeder();

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   MDBBtn,
   MDBCard,
@@ -23,8 +24,44 @@ const Cart = ({ cart, products, setCart }) => {
     setCart([]);
   };
 
-  const handleCheckout = () => {
-    // Checkout logic will be implemented here
+  const handleCheckout = async () => {
+    const token = localStorage.getItem("token"); // Retrieve the token from localStorage
+    if (!token) {
+      alert("You need to be logged in to checkout.");
+      return;
+    }
+
+    // Decode the token to extract user ID
+    const decodedToken = JSON.parse(atob(token.split(".")[1])); // base64 decode
+    const userId = decodedToken.id;
+
+    if (!userId) {
+      alert("Invalid user information. Please log in again.");
+      return;
+    }
+
+    try {
+      // Send each cart item as a separate request
+      for (const item of cart) {
+        const payload = {
+          userId,
+          productId: item._id,
+          qty: item.qte,
+        };
+
+        await axios.post("http://localhost:8000/api/orders", payload, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          },
+        });
+      }
+
+      alert("Orders placed successfully!");
+      setCart([]); // Clear the cart after successful checkout
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      alert("Failed to place the order. Please try again.");
+    }
   };
 
   const totalPrice = cart.reduce((acc, cartItem) => {

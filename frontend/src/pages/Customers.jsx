@@ -40,6 +40,7 @@ const Customers = () => {
 
   return (
     <div style={{ width: "80%", margin: "auto", marginTop: "40px" }}>
+      <h2 className="text-white no-underline rounded p-4 bg-gray-800 text-2xl font-bold text-center my-10 mx-auto w-fit shadow-md">Customers</h2>;
       {users.map((user) => (
         <Accordion key={user._id}> {/* Add key here for better performance */}
           <Accordion.Item eventKey={user._id}> {/* Unique eventKey for each item */}
