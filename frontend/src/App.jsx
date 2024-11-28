@@ -16,6 +16,7 @@ import SignupScreen from "./pages/SignupScreen.jsx";
 import axios from "axios";
 import ProductsUpdate from "./pages/ProductsUpdate.jsx";
 import Cart from "./pages/Cart.jsx";
+import Orders from "./pages/Orders.jsx";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -87,6 +88,14 @@ function App() {
                     <Route path="/event/:_id" element={<ProductPage products={products} addToCart={addToCart} />} />
                     <Route path="/search" element={<SearchPage products={products} />} />
                     <Route path="/cart" element={<Cart setCart={setCart} cart={cart} products={products} />} />
+                    <Route
+                        path="/admin/orders"
+                        element={
+                            <PrivateRoute allowedRoles={["admin"]}>
+                                <Orders products={products}/>
+                            </PrivateRoute>
+                        }
+                    />
                     <Route
                         path="/admin/customers"
                         element={
