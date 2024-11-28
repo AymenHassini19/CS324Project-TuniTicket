@@ -23,6 +23,10 @@ const Cart = ({ cart, products, setCart }) => {
     setCart([]);
   };
 
+  const handleCheckout = () => {
+    // Checkout logic will be implemented here
+  };
+
   const totalPrice = cart.reduce((acc, cartItem) => {
     const product = products.find((p) => p._id === cartItem._id);
     if (product) {
@@ -110,14 +114,17 @@ const Cart = ({ cart, products, setCart }) => {
             <MDBCard className="rounded-3 mb-4">
               <MDBCardBody className="p-4">
                 <MDBRow className="justify-content-between align-items-center">
-                  <MDBCol md="6" lg="6" xl="6">
+                  <MDBCol md="4" lg="4" xl="4">
                     <MDBTypography tag="h5" className="mb-0">
                       Total Price: TDN {totalPrice.toFixed(2)}
                     </MDBTypography>
                   </MDBCol>
-                  <MDBCol md="6" lg="6" xl="6" className="text-end">
-                    <MDBBtn color="danger" onClick={handleClearCart}>
+                  <MDBCol md="8" lg="8" xl="8" className="text-end">
+                    <MDBBtn color="danger" className="me-2" onClick={handleClearCart}>
                       Empty Cart
+                    </MDBBtn>
+                    <MDBBtn color="success" onClick={handleCheckout}>
+                      Checkout
                     </MDBBtn>
                   </MDBCol>
                 </MDBRow>
