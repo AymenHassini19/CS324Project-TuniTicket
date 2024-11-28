@@ -16,7 +16,7 @@ const ProductPage = ({ products, addToCart }) => {
 
     const addToCartHandler = () => {
         addToCart(product._id, qty);
-        console.log(`Added ${qty} tickets of ${product.name} to the cart`);
+        alert(`Added ${qty} tickets of ${product.name} to the cart`);
     };
 
     return (
