@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -11,8 +13,8 @@ const Orders = () => {
       const token = localStorage.getItem('token');
       const { data } = await axios.get('http://localhost:8000/api/orders', {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       setOrders(data.orders);
     };
@@ -21,8 +23,8 @@ const Orders = () => {
       const token = localStorage.getItem('token');
       const { data } = await axios.get('http://localhost:8000/api/users', {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       setUsers(data.users);
     };
@@ -31,8 +33,8 @@ const Orders = () => {
       const token = localStorage.getItem('token');
       const { data } = await axios.get('http://localhost:8000/api/products', {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       setProducts(data.products);
     };
@@ -52,6 +54,20 @@ const Orders = () => {
     return product ? product.name : 'Unknown Product';
   };
 
+  const handleDeleteOrder = async (orderId) => {
+    const token = localStorage.getItem('token');
+    try {
+      await axios.delete(`http://localhost:8000/api/orders/${orderId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setOrders(orders.filter((order) => order._id !== orderId)); // Remove deleted order from the state
+    } catch (error) {
+      console.error('Failed to delete the order', error);
+    }
+  };
+
   return (
     <div className="container mt-5">
       <h2 className="text-white no-underline rounded p-4 bg-gray-800 text-2xl font-bold text-center my-10 mx-auto w-fit shadow-md"> Orders </h2>
@@ -62,6 +78,7 @@ const Orders = () => {
             <th>Event</th>
             <th>Quantity</th>
             <th>Purchase Date</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -71,6 +88,16 @@ const Orders = () => {
               <td>{getProductNameById(order.productId)}</td>
               <td>{order.qty}</td>
               <td>{new Date(order.createdAt).toLocaleString()}</td>
+              <td>
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  style={{ color: '#cc0000' }}
+                  size="lg"
+                  onClick={() => handleDeleteOrder(order._id)}
+                  role="button"
+                  aria-label="Delete Order"
+                />
+              </td>
             </tr>
           ))}
         </tbody>
@@ -80,7 +107,3 @@ const Orders = () => {
 };
 
 export default Orders;
-
-
-
-
