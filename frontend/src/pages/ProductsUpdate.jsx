@@ -141,7 +141,7 @@ const ProductsUpdate = ({ products, setProducts }) => {
 
     return (
         <div className="container mt-5">
-            <h2 className="mb-4">Manage Products</h2>
+            <h2 className="mb-4">Manage Events</h2>
 
             <Button variant="primary" onClick={() => handleShowModal()}>
                 Add Event
@@ -210,7 +210,7 @@ const ProductsUpdate = ({ products, setProducts }) => {
             <Modal show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {isEditing ? "Modify Product" : "Add New Product"}
+                        {isEditing ? "Modify Event" : "Add New Event"}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

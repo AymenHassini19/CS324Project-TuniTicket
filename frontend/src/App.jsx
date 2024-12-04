@@ -17,6 +17,7 @@ import axios from "axios";
 import ProductsUpdate from "./pages/ProductsUpdate.jsx";
 import Cart from "./pages/Cart.jsx";
 import Orders from "./pages/Orders.jsx";
+import Footer from "./components/footer.jsx";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -121,6 +122,7 @@ function App() {
                         }
                     />
                 </Routes>
+                <Footer/>
             </BrowserRouter>
         </div>
     );
