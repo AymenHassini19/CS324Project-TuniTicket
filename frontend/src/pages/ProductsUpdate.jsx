@@ -72,7 +72,12 @@ const ProductsUpdate = ({ products, setProducts }) => {
             return;
         }
         try {
-            await axios.delete(`http://localhost:8000/api/products/${productId}`);
+            const token = localStorage.getItem('token');
+            await axios.delete(`http://localhost:8000/api/products/${productId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             setProducts(products.filter(product => product._id !== productId));
             alert("Product deleted successfully!");
         } catch (error) {
@@ -92,12 +97,14 @@ const ProductsUpdate = ({ products, setProducts }) => {
             formDataObj.append("image", selectedFile);
     
             try {
+                const token = localStorage.getItem('token');
                 const uploadResponse = await axios.post(
                     "http://localhost:8000/api/upload",
                     formDataObj,
                     {
                         headers: {
                             "Content-Type": "multipart/form-data",
+                            'Authorization': `Bearer ${token}`
                         },
                     }
                 );
@@ -111,14 +118,25 @@ const ProductsUpdate = ({ products, setProducts }) => {
     
         // Update or create product with the uploaded image path
         try {
+            const token = localStorage.getItem('token');
             const response = isEditing
                 ? await axios.put(
                       `http://localhost:8000/api/products/${formData._id}`,
-                      { ...formData, image: uploadedImagePath }
+                      { ...formData, image: uploadedImagePath },
+                      {
+                          headers: {
+                              'Authorization': `Bearer ${token}`
+                          }
+                      }
                   )
                 : await axios.post("http://localhost:8000/api/products", {
                       ...formData,
                       image: uploadedImagePath,
+                  },
+                  {
+                      headers: {
+                          'Authorization': `Bearer ${token}`
+                      }
                   });
     
             const updatedProduct = response.data.product;
